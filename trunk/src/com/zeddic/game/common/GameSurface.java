@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 Geo Siege Project
+ * Copyright (C) 2010 Zeddic Game Library
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,9 +23,19 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+/**
+ * A drawable game canvas. May be placed directly in the .xml layout file
+ * or created and added programatically. A listener may register to the surface
+ * to receive user input events.
+ * 
+ * @author scott@zeddic.com (Scott Bailey)
+ */
 public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
 
+  // The current listener.
   private GameSurfaceEventListener listener = null;
+  
+  // Whether the surface has been initialized by the android ui system.
   private boolean surfaceReady = false;
   
   public GameSurface(Context context) {
@@ -36,14 +46,19 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     getHolder().addCallback(this);
   }
   
+  /**
+   * Sets a listener.
+   */
   public void setEventListener(GameSurfaceEventListener listener) {
     this.listener = listener;
   }
   
+  /**
+   * Returns true if the surface is ready to handle events and draw.
+   */
   public boolean isSurfaceReady() {
     return surfaceReady;
   }
-  
   
   @Override
   public boolean onTouchEvent(MotionEvent e) {
@@ -100,7 +115,6 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
       listener.onSurfaceDestroyed();
     }
   }
-  
 
   public static interface GameSurfaceEventListener {
     void onSurfaceCreated();
@@ -119,5 +133,4 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     
     void onLayoutChangedEvent(boolean changed, int left, int top, int right, int bottom);
   }
-  
 }

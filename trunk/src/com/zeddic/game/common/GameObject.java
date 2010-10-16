@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 Geo Siege Project
+ * Copyright (C) 2010 Zeddic Game Library
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,11 @@ package com.zeddic.game.common;
 
 import android.graphics.Canvas;
 
-
+/**
+ * A generic object in the game render/update tree.
+ * 
+ * @author scott@zeddic.com
+ */
 public class GameObject {
   
   /** Whether an object should be actively drawn and updated. */
@@ -30,24 +34,38 @@ public class GameObject {
   /** Whether an object was obtained from an object pool. */
   public boolean taken = false;
   
-   
   public GameObject() {
 
   }
   
+  /**
+   * Draws the object on the canvas.
+   * @param canvas The default drawing canvas.
+   */
   public void draw(Canvas canvas) {
    
   }
   
+  /**
+   * Updates the game object.
+   * @param time The passed time in milliseconds.
+   */
   public void update(long time) {
     
   }
   
+  /**
+   * Enables an object. Only enabled objects will be draw or updated by
+   * object pools.
+   */
   public void enable() {
     active = true;
     canRecycle = false;
   }
   
+  /**
+   * Resets an object to its basic, initialized state. Optional.
+   */
   public void reset() {
 
   }
