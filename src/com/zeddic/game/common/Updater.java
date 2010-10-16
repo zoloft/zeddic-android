@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 Geo Siege Project
+ * Copyright (C) 2010 Zeddic Game Library
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,10 +33,46 @@ import android.view.SurfaceHolder;
 
 import com.zeddic.game.common.GameSurface.GameSurfaceEventListener;
 
+/**
+ * Manages a background thread to update and render a {@link Game}. The updater
+ * acts as a middle man between the the canvas surface and the game, proxying
+ * events from the canvas. 
+ * 
+ * <p>Also provides a mechanism for the main android UI thread to register to
+ * receive events from the background thread.
+ * 
+ * <p>An example of using the updater and setting up a game:
+ * 
+ * <code>
+ * // Create the drawing Surface;
+ * // May optionally be placed inside the xml file.
+ * surface = new GameSurface(this);
+ * surface.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+ *  
+ * // Create the game.
+ * game = new MyGame();
+ * 
+ * // Create the updater to coordinate the background update/render thread.
+ * updater = new Updater(surface);
+ * updater.setGame(game);
+ * updater.showFps(true);
+ * 
+ * // Add the drawing surface to the screen (may be skipped if placed inline in xml)
+ * LinearLayout container = (LinearLayout)findViewById(R.id.my_game_layout);
+ * container.addView(surface);
+ *
+ * // Start the background thread which will do our setup.
+ * updater.start();
+ * </code>
+ * 
+ * @author scott@zeddic.com
+ */
 public class Updater implements GameSurfaceEventListener  {
 
+  // The game to render.
   public Game game = null;
   
+  // The target frames per second.
   private static final int UPDATES_PER_SECOND = 60;
   private final Timer timer;
   private final GameSurface gameSurface;
@@ -60,6 +96,10 @@ public class Updater implements GameSurfaceEventListener  {
   
   public Handler handler;
   
+  /**
+   * Creates a new updater to manage draws and updates to the provided
+   * GameSurface.
+   */
   public Updater(GameSurface surface) {
     this.timer = new Timer();
     this.timestamp = System.currentTimeMillis();
@@ -78,6 +118,9 @@ public class Updater implements GameSurfaceEventListener  {
     gameSurface.setEventListener(this);
   }
   
+  /**
+   * Starts running the updater.
+   */
   public void start() {
     if (running) {
       return;
@@ -89,18 +132,25 @@ public class Updater implements GameSurfaceEventListener  {
     timer.scheduleAtFixedRate(updateTask, 0, updateInterval);
   }
   
+  /**
+   * Stops the updater.
+   */
   public void stop() {
     running = false;
     updateTask.cancel();
     timer.purge();
   }
   
+  /**
+   * Pauses the updater.
+   */
   public void pause() {
-    running = false;
-    updateTask.cancel();
-    timer.purge();
+    stop();
   }
   
+  /**
+   * Updates the game. Triggered via the updater.
+   */
   private void update() {
     if (game == null) {
       return;
@@ -120,6 +170,9 @@ public class Updater implements GameSurfaceEventListener  {
     timestamp = now;
   }
   
+  /**
+   * Obtains the game canvas and draws the game.
+   */
   private void draw() {
     if (surfaceHolder == null || !gameSurface.isSurfaceReady()) {
       // Can't draw yet. The surface is still being created.
@@ -176,18 +229,34 @@ public class Updater implements GameSurfaceEventListener  {
     canvas.restore();
   }
   
+  /**
+   * Registers to recieve an event in the UI thread when it is published
+   * by the background game thread.
+   */
   public void addEventHandler(int eventId, Handler handler) {
     eventHandlers.put(eventId, handler);
   }
-  
+
+  /**
+   * Unregisters to receive an event.
+   */
   public void removeEventHandler(int eventId) {
     eventHandlers.remove(eventId);
   }
   
+  /**
+   * Unregisters all event handlers.
+   */
   public void clearEventHandlers() {
     eventHandlers.clear();
   }
   
+  /**
+   * Triggers a specific event. This can be used to pass events in the game
+   * thread (such as deaths) to the android ui thread so it can perform
+   * responses (such as showing native popup boxes).
+   * @param eventId
+   */
   public void triggerEventHandler(int eventId) {
     if (!running) {
       Log.d(Updater.class.getName(), "Not triggering event. The game is not running");
@@ -201,6 +270,9 @@ public class Updater implements GameSurfaceEventListener  {
     handler.sendEmptyMessage(0);
   }
   
+  /**
+   * Sets the game that should be updated and drawn.
+   */
   public void setGame(Game mode) {
     this.game = mode;
     if (mode != null) {
@@ -213,10 +285,17 @@ public class Updater implements GameSurfaceEventListener  {
     }
   }
   
+  /**
+   * Sets whether the current frames per second should be rendered in the top
+   * left. Defaults to false.
+   */
   public void showFps(boolean state) {
     this.showFps = state;
   }
   
+  /**
+   * An updater that tries to update and draw the game on a timed basis. 
+   */
   private class UpdateTask extends TimerTask {
     @Override
     public void run() {

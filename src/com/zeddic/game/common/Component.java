@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 Geo Siege Project
+ * Copyright (C) 2010 Zeddic Game Library
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,13 +19,14 @@ package com.zeddic.game.common;
 import android.graphics.Canvas;
 
 
+/**
+ * TODO: Delete this class and move this to GameObject instead.
+ * 
+ * @author scott@zeddic.com
+ */
 public class Component {
   
   public GameObject parent;
-  
-  /*public Component(GameObject parent) {
-    this.parent = parent;
-  }*/
   
   public void draw(Canvas canvas) {
     
