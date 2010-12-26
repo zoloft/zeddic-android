@@ -1,0 +1,5 @@
+#labels sidebar
+* [GettingStarted Getting Started]
+    * [SetupProject New Project Setup]
+    * [SimpleGame Create a Simple Game]
+    * [GameObjects Game Objects]
