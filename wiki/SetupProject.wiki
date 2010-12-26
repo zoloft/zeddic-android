@@ -21,13 +21,13 @@ These instructions will not work if you do not have the SDK installed.
 
 = Setting up Subclipse = 
 
-Help --> Install New Software
+In Eclipse click: Help --> Install New Software
 
-Under the work with field, add: 
+Under the "work with field", add: 
 
 `http://subclipse.tigris.org/update_1.6.x`
 
-Put a check next to "subsclipse" and hit Next. Continuing hitting next, agree to the license agreements, then Finish. The installation will take a few minutes, after which you'll need to restart Eclipse.
+Install 'subclipse' from the list of available software. The installation will take a few minutes, after which you'll need to restart Eclipse.
 
 Add the Subsclipe view to your perspective. Click Window --> Show View --> Other --> SVN --> SVN Repositories
 
