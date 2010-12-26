@@ -9,7 +9,7 @@ Add your content here.
 
 'testinging blah blah'
 
-[Setup random test] 
+[RandomTest random test] 
 
 = Details =
 
