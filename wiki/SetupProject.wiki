@@ -1,4 +1,5 @@
-#summary How to download the common library and create a new project that uses it.
+#summary How to download and setup the common library.
+#sidebar TableOfContents
 
 <wiki:toc max_depth="1"  />
 
