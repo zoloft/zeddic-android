@@ -267,6 +267,11 @@ public class Updater implements GameSurfaceEventListener  {
       Log.e(Updater.class.getName(), "Event Handler for " + eventId + " not found.");
     }
     Handler handler = eventHandlers.get(eventId);
+    
+    if (handler == null) {
+      return;
+    }
+    
     handler.sendEmptyMessage(0);
   }
   
