@@ -59,7 +59,7 @@ public class Ball extends PhysicalObject {
   }
 }}}
 
-= Types of Collision Objects=
+= Types of Collision Checks =
 
 When you register your object with the collision system, you can specify different Collision Types. The collision types determine how the Collision System monitors your object and allows it to be more efficient.
 
@@ -89,3 +89,32 @@ There are 3 collision types to choose from inside `CollisionManager`
   public static final int TYPE_RECEIVE_ONLY = 3;
 
 }}}
+
+= Object Bounds =
+Every object registered with the Collision System has some 'bounding area' that the collision system uses to check for overlap.
+
+The library uses a [http://en.wikipedia.org/wiki/Separating_axis_theorem Seperating Axis Theorem] implementation of collision detection, meaning that these bounds may be complex polygons and not simply squares (though square and circle collision checks are the fastest). 
+
+[http://zeddic-android.googlecode.com/svn/wiki/bounds.png]
+
+You can set the bounds of your object by calling `setBounds()` within your objects constructor.
+
+For example:
+
+{{{
+setBounds(new Bounds(new Circle(BALL_RADIUS));
+}}}
+
+or
+
+{{{
+setBounds(new Bounds(
+    new PolygonBuilder()
+        .add(-10, -2)
+        .add(10, -2)
+        .add(10, 2)
+        .add(-10, 2)
+        .build()));
+}}}
+
+You may also rotate and scale `[http://code.google.com/p/zeddic-android/source/browse/trunk/src/com/zeddic/game/common/PhysicalObject.java PhysicalObject]`s and their bounds will update accordingly.
