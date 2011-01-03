@@ -33,6 +33,8 @@ public class Ball extends PhysicalObject {
     components = new ComponentManager(this);
     components.add(new CollisionComponent(this, CollisionManager.TYPE_HIT_RECEIVE);
     // Add other components here.
+
+    setBounds(new Bounds(new Circle(5));
   }
 
   public void draw(Canvas c) {
