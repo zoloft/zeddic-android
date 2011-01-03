@@ -2,7 +2,7 @@
   * [Introduction]
   * Getting Started
     * [SetupProject New Project Setup]
-    * [SimpleGame Create a Simple Game]
+    * [SimpleGame Game and Activity]
   * [GameObjects Game Tree]
   * [ObjectPools Object Pools]
   * [PhysicalObject]
