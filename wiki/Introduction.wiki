@@ -1,4 +1,5 @@
 #summary A basic overview of the Zeddic android library.
+#labels Featured
 #sidebar TableOfContents
 
 = Introduction =
