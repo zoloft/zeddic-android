@@ -18,7 +18,8 @@ Extending from the `GameObject` class allows your objects to make use of `Object
 
 You're `GameObject` should override two main methods:
 
-*`update(long time)`*
+==`update(long time)`==
+
 The update method is responsible for updating the state of the object and all of it's children objects. It is passed the number of milliseconds that have passed since the last full frame. 
 
 Any movements that you do in your game should be scaled based on the amount of time that has passed. This allows your game to run the same regardless of how fast it is rendering. 
@@ -35,5 +36,22 @@ public void update(long time) {
 
 }}}
 
-*`draw(Canvas canvas)`*
+==`draw(Canvas canvas)`==
+The draw command is called whenever it is time for the object to draw itself. It is provided a reference to a prepared canvas on which to draw. 
 
+If your object should be drawn at a particular position in the canvas, it helps to use the built in canvas `translate` and `rotate` commands. 
+
+For example:
+
+{{{
+public void drawBounds(Canvas canvas) {
+  canvas.save();
+
+  canvas.translate(x, y);
+  canvas.rotate(angle);
+  canvas.scale(scale, scale);
+  
+  canvas.drawPath(OBJECT_PATH, PAINT);
+  canvas.restore();
+}
+}}}
