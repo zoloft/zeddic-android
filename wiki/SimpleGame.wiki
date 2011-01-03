@@ -3,7 +3,7 @@
 
 = Overview =
 
-There are two main classes that you'll need to create:
+To create your game you'll need to start with two basic files that kick-start everything:
 
   * An activity class with layout that will 'hookup' everything
   * A game class
