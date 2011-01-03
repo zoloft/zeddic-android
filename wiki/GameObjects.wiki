@@ -55,3 +55,11 @@ public void drawBounds(Canvas canvas) {
   canvas.restore();
 }
 }}}
+
+=Example Game Objects=
+The [http://www.geosiege.com Geo Siege] project provides a few examples of `GameObjects`. A few helpful ones to check out:
+
+[http://code.google.com/p/geosiege/source/browse/trunk/src/com/geosiege/game/ships/SimpleEnemyShip.java SimpleEnemyShip]
+[http://code.google.com/p/geosiege/source/browse/trunk/src/com/geosiege/game/ships/Arrow.java ArrowEnemy]
+[http://code.google.com/p/geosiege/source/browse/trunk/src/com/geosiege/game/components/MapBoundsComponent.java MapBoundsComponent]
+
