@@ -1,5 +1,7 @@
 #sidebar TableOfContents
 
+<wiki:toc max_depth="1"  />
+
 = Collision Detection =
 Collision detection is a means of detecting whether [PhysicalObjects] in your game have 'hit', or otherwise collided with another object in the game world.
 
