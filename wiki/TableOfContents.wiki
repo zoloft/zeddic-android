@@ -3,4 +3,4 @@
   * Getting Started
     * [SetupProject New Project Setup]
     * [SimpleGame Create a Simple Game]
-    * [GameObjects Game Objects]
+    * [GameObjects Game Tree]
