@@ -1,0 +1,91 @@
+#sidebar TableOfContents
+
+= Collision Detection =
+Collision detection is a means of detecting whether [PhysicalObjects] in your game have 'hit', or otherwise collided with another object in the game world.
+
+For example:
+  * Has a bullet hit a wall or enemy?
+  * Has the player collided with an obstacle?
+  * Has an enemy collided with the player?
+
+= Initializing the Collision System =
+Before using the collision system, you must initialize it by telling it the size of the world.
+
+In your Game's `init` method, simply call:
+
+{{{ CollisionManager.setup(MAX_WORLD_WIDTH, MAX_WORLD_HEIGHT); }}}
+
+= Registering an Object with the Collision System =
+To have the collision system check for collisions by or from your game object you must register it with the collision system. If your object isn't registered with the collision system, no collision checks will be done on it.
+
+To do this, you'll want to create a [http://code.google.com/p/zeddic-android/source/browse/trunk/src/com/zeddic/game/common/collision/CollisionComponent.java CollisionComponent] as a child component for your `GameObject`. Heres an example:
+
+{{{
+
+public class Ball extends PhysicalObject {
+  private ComponentManager components;
+
+  public Ball() {
+    components = new ComponentManager(this);
+    components.add(new CollisionComponent(this, CollisionManager.TYPE_HIT_RECEIVE);
+    // Add other components here.
+  }
+
+  public void draw(Canvas c) {
+    components.draw(c);
+
+    // Draw the ball here
+  }
+
+  public void update(long time) {
+    // Update the ball's physical location.
+    super.update(time);
+
+    // Check for a collision.
+    component.update(time);
+  }
+
+  // The collide method will automatically be called when this object
+  // collides with some other object in the world. It is provided with
+  // two objects: the other object that it collided with, and a vector
+  // that when applied to the current object will cause it to no longer
+  // be collided.
+  public void collide(PhysicalObject object, Vector2d avoidVector) {
+    if (object instanceof Bullet) {
+      damage(5);
+    } else {
+      super.collide(object, avoidVector);
+    }
+  }
+}}}
+
+= Types of Collision Objects=
+
+When you register your object with the collision system, you can specify different Collision Types. The collision types determine how the Collision System monitors your object and allows it to be more efficient.
+
+There are 3 collision types to choose from inside `CollisionManager`
+
+{{{
+  /**
+   * An object that can hit other objects but can never be hit. 
+   * This is useful when many of a given type of object may exist
+   * in the world, but it doesn't matter if anything runs into them. 
+   * For example, bullets, where you want to avoid wasted checks to see
+   * if bullets have hit other bullets.
+   */
+  public static final int TYPE_HIT_ONLY = 1;
+  
+  /**
+   * An object that can hit other objects and be hit. For example:
+   * the players ship.
+   */
+  public static final int TYPE_HIT_RECEIVE = 2;
+  
+  /**
+   * An object that can receive collisions but can never hit something.
+   * For example: asteroids that can't be hit by each other but can be hit
+   * by a player ship. 
+   */
+  public static final int TYPE_RECEIVE_ONLY = 3;
+
+}}}
