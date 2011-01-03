@@ -1,20 +1,6 @@
-#summary One-sentence summary of this page.
+#summary A basic overview of the Zeddic android library.
 #sidebar TableOfContents
 
 = Introduction =
 
-Add your content here.
-
-
-*bold*
-
-'testinging blah blah'
-
-[RandomTest random test] 
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+The Zeddic Android library a simple set of cla
