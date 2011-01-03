@@ -117,4 +117,4 @@ setBounds(new Bounds(
         .build()));
 }}}
 
-You may also rotate and scale `[http://code.google.com/p/zeddic-android/source/browse/trunk/src/com/zeddic/game/common/PhysicalObject.java PhysicalObject]`s and their bounds will update accordingly.
+You may also rotate and scale [http://code.google.com/p/zeddic-android/source/browse/trunk/src/com/zeddic/game/common/PhysicalObject.java PhysicalObject]s and their bounds will update accordingly.
