@@ -3,7 +3,7 @@
   * Getting Started
     * [SetupProject New Project Setup]
     * [SimpleGame Create a Simple Game]
-    * [GameObjects Game Tree]
+  * [GameObjects Game Tree]
   * [ObjectPools Object Pools]
   * [PhysicalObject]
   * [CollisionDetection Collision Detection]
