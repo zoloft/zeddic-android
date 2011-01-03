@@ -2,4 +2,20 @@
 
 = PhysicalObject =
 
-A physical object is a special [GameObjects#Game_Object]
+A [http://code.google.com/p/zeddic-android/source/browse/trunk/src/com/zeddic/game/common/PhysicalObject.java PhysicalObject]  is a special [GameObjects#Game_Object Game Object] that already has an x & y position, bounds, velocity, and scale.
+
+It's a useful class to extend from if you intend on having some object that will move about the screen, such as a bullet, player, or enemy.
+
+Any `GameObject` that you want to use with the [CollisionDetection Collision Detection] classes must also extend PhysicalObject, as this is how the system is able to determine bounds.
+
+= Extending Physical Object =
+If you extend `PhysicalObject` make sure that you call super.update() in your `GameObject`s update method. If not, your object will not have its velocity applied.
+
+A few examples of classes extending from PhysicalObject can be found in the GeoSiege project:
+
+  * [http://code.google.com/p/geosiege/source/browse/trunk/src/com/geosiege/game/guns/Bullet.java Bullet]
+  * [http://code.google.com/p/geosiege/source/browse/trunk/src/com/geosiege/game/ships/PlayerShip.java PlayerShip]
+
+You can also check out the `Particle` from the Zeddic particle emitter code:
+
+  * [http://code.google.com/p/zeddic-android/source/browse/trunk/src/com/zeddic/game/common/particle/Particle.java Particle]
