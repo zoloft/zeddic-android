@@ -41,8 +41,8 @@ public class Ball extends PhysicalObject {
     // Update the ball's physical location.
     super.update(time);
 
-    // Check for a collision.
-    component.update(time);
+    // Check for a collision (and update all components)
+    components.update(time);
   }
 
   // The collide method will automatically be called when this object
