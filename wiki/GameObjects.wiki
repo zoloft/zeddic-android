@@ -6,7 +6,7 @@ Using a "Game Tree" is a helpful way of organizing the objects in your game. In 
 
 For each frame of your game, you will need to update and draw each object in your game tree. This is done by a simple depth first traversal of the tree.
 
-A common and helpful technique when using this pattern is to have game objects that provide some sort of functionality for their parent. For example, an Enemy object may have a PathingComponent and an AimingComponent that provide movement and direction functionality. This allows you to use composition, rather than inheritance, to build up your game. 
+A common and helpful technique when using this pattern is to have game objects that provide some sort of functionality for their parent. For example, an Enemy object may have a `PathingComponent` or an `AimingComponent` that provide movement and direction functionality. This allows you to use composition, rather than inheritance, to build up your game. 
 
 [http://zeddic-android.googlecode.com/svn-history/r27/wiki/game_tree.PNG]
 
@@ -15,5 +15,3 @@ A common and helpful technique when using this pattern is to have game objects t
 A [http://code.google.com/p/zeddic-android/source/browse/trunk/src/com/zeddic/game/common/GameObject.java?r=26 GameObject] is used to represent any object in your game tree, such as a Bullet, Ship, or Player. A `GameObject` is anything that should be have it's state updated and be drawn during each frame.
 
 Extending from the `GameObject` class allows your objects to make use of ObjectPools and other utility classes in the library.
-
-
