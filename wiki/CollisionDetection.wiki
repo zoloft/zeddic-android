@@ -118,3 +118,50 @@ setBounds(new Bounds(
 }}}
 
 You may also rotate and scale [http://code.google.com/p/zeddic-android/source/browse/trunk/src/com/zeddic/game/common/PhysicalObject.java PhysicalObject]s and their bounds will update accordingly.
+
+
+= Custom Collision Checks =
+Sometimes you'll want to optimize the collision system for certain types of collisions. For example, you may want enemy bullets to ignore other enemies. While you could simply provide an empty collide method, you still waste a lot of CPU time calculating and checking for collisions that you never intend to handle.
+
+In cases like this, you can use a [http://code.google.com/p/zeddic-android/source/browse/trunk/src/com/zeddic/game/common/collision/CustomCollisionCheck.javaCustomCollisionCheck]. 
+
+A class that implements this interface will have a single method `shouldSkipCollisionCheck` which you can return a boolean from. Heres an example CustomCollisionCheck:
+
+{{{
+public class CustomCollisionCheck extends CustomCollisionCheck {
+
+  public boolean shouldSkipCollisionCheck(
+    PhysicalObject src,
+    PhysicalObject dest,
+    long time) {
+
+    if (src instanceof Bullet && 
+       ((Bullet) src).firedByEnemy &&
+       dest instanceof EnemyShip) {
+      return true;
+    }
+    return false;
+  }
+}
+}}}
+
+You would then need to register your collision check when you initialized the collision system:
+
+{{{
+CollisionManager.setup(MAX_WORLD_WIDTH, MAX_WORLD_HEIGHT);
+CollisionManager.get().setCustomCollisionCheck(new CustomCollisionCheck());
+}}}
+
+
+= Setting the Size of the Collision Grid =
+Behind the scenes the Collision System makes use of a [http://code.google.com/p/zeddic-android/source/browse/trunk/src/com/zeddic/game/common/collision/CollisionGrid.java CollisionGrid] to speed up checks. The world space is split up into a grid made up of various cells. When checking for a collision, the system only needs to check for collisions among neighboring cells of the one it exists in.
+
+[http://zeddic-android.googlecode.com/svn/wiki/grid.png]
+
+As a rule of thumb, your grid size should be just a bit larger than the size of your game objects, though you can experiment for best performance. 
+
+To set the grid size, use the alternative CollisionManager `setup` method:
+
+{{{
+CollisionManager.setup(MAX_WORLD_WIDTH, MAX_WORLD_HEIGHT, GRID_SIZE);
+}}}
