@@ -154,7 +154,7 @@ CollisionManager.get().setCustomCollisionCheck(new CustomCollisionCheck());
 
 
 = Setting the Size of the Collision Grid =
-Behind the scenes the Collision System makes use of a [http://code.google.com/p/zeddic-android/source/browse/trunk/src/com/zeddic/game/common/collision/CollisionGrid.java CollisionGrid] to speed up checks. The world space is split up into a grid made up of various cells. When checking for a collision, the system only needs to check for collisions among neighboring cells of the one it exists in.
+Behind the scenes the Collision System makes use of a [http://code.google.com/p/zeddic-android/source/browse/trunk/src/com/zeddic/game/common/collision/CollisionGrid.java CollisionGrid] to speed up checks. The world space is split up into a grid. When checking for a collision, the system only needs to check against objects within the grid spots immediately neighboring the object being checked.
 
 [http://zeddic-android.googlecode.com/svn/wiki/grid.png]
 
