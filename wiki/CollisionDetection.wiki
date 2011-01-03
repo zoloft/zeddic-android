@@ -93,7 +93,7 @@ There are 3 collision types to choose from inside `CollisionManager`
 = Object Bounds =
 Every object registered with the Collision System has some 'bounding area' that the collision system uses to check for overlap.
 
-The library uses a [http://en.wikipedia.org/wiki/Separating_axis_theorem Seperating Axis Theorem] implementation of collision detection, meaning that these bounds may be complex polygons and not simply squares (though square and circle collision checks are the fastest). 
+The library uses a [http://en.wikipedia.org/wiki/Separating_axis_theorem Seperating Axis Theorem] implementation of collision detection, meaning that these bounds may be complex polygons and not simply squares or circles. Note, however, that the collision system has special checks for collisions between circles, allowing these checks to be very fast if you do choose to use them.
 
 [http://zeddic-android.googlecode.com/svn/wiki/bounds.png]
 
