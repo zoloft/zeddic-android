@@ -13,4 +13,4 @@ The Zeddic library is a set of classes that makes it easier to create simple, ca
  * Some basic Vector math
 
 = Getting Started =
-To start using the library, check out the [GettingStarted Getting Started] section for a quick tutorial. You can also browse the various parts of the library using the links on the left.
+To start using the library, check out the [SetupProject Getting Started] section for a quick tutorial and instructions on how to setup Eclipse.. You can also browse the various parts of the library using the links on the left.
