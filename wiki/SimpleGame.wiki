@@ -1,20 +1,12 @@
-#summary How to create a simple, Hello World game.
 #labels Featured
 #sidebar TableOfContents
-
-= Introduction =
-
-The common game library provides a set of simple utility classes for 2D android games. These utility libraries make use of the Android canvas classes, which while not as fast as using OpenGL, provide decent performance for basic games.
-
-The common library has some basic boiler plate classes for setting up the canvas, fetching user input, and coordinating the draw/update thread. The following shows you how you can setup your new android project to use these common libraries. Be sure that you've setup your Eclipse project first.
-
 
 = Overview =
 
 There are two main classes that you'll need to create:
 
-# An activity class with layout that will 'hookup' everything
-# A game class
+  * An activity class with layout that will 'hookup' everything
+  * A game class
 
 = The Activity = 
 The activity is the main entry point for your application. To use the library, you'll need a simple Activity class with a bare bones layout. The Activity will create an instance of an Updater and supply it with your game that it should maintain. 
