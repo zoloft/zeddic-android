@@ -2,4 +2,4 @@
 
 = PhysicalObject =
 
-A physical object is a special [GameObject]
+A physical object is a special [GameObjects#Game_Object]
