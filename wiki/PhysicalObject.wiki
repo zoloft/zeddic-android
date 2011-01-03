@@ -1,0 +1,5 @@
+#sidebar TableOfContents
+
+= PhysicalObject =
+
+A physical object is a special [GameObject]
