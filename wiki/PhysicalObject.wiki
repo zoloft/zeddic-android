@@ -1,6 +1,6 @@
 #sidebar TableOfContents
 
-= PhysicalObject =
+= Physical Object =
 
 A [http://code.google.com/p/zeddic-android/source/browse/trunk/src/com/zeddic/game/common/PhysicalObject.java PhysicalObject]  is a special [GameObjects#Game_Object Game Object] that already has an x & y position, bounds, velocity, and scale.
 
