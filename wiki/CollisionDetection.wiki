@@ -1,15 +1,16 @@
 #sidebar TableOfContents
 
-= Collision Detection =
+= Contents =
+<wiki:toc max_depth="1"  />
+
+
+= Overview =
 Collision detection is a means of detecting whether [PhysicalObjects] in your game have 'hit', or otherwise collided with another object in the game world.
 
 For example:
   * Has a bullet hit a wall or enemy?
   * Has the player collided with an obstacle?
   * Has an enemy collided with the player?
-
-<wiki:toc max_depth="1"  />
-
 
 = Initializing the Collision System =
 Before using the collision system, you must initialize it by telling it the size of the world.
